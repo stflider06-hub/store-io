@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Товар — BAI Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <div class="header__left">
+        <div class="logo">
+            <span class="logo__main">BAI</span>
+            <span class="logo__sub">Store</span>
+        </div>
+        <div class="location">
+            <div class="location__row">
+                <span class="location__label">Ваша область:</span>
+                <select class="location__select" id="regionSelect">
+                    <option>Бишкек</option>
+                    <option>Ош</option>
+                    <option>Джалал-Абад</option>
+                    <option>Баткен</option>
+                    <option>Талас</option>
+                    <option>Нарын</option>
+                    <option>Иссык-Куль</option>
+                    <option>Чуй</option>
+                </select>
+            </div>
+            <input type="text"
+                   class="location__address"
+                   id="addressInput"
+                   placeholder="Укажите адрес доставки (улица, дом, квартира)">
+        </div>
+    </div>
+
+    <div class="header__center">
+        <form class="search" onsubmit="return false;">
+            <input type="text" class="search__input" placeholder="Поиск по товарам..." id="searchInput" disabled>
+            <button class="search__btn" disabled>Найти</button>
+        </form>
+    </div>
+
+    <div class="header__right">
+        <button class="header-icon">
+            <span class="header-icon__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.1 4.44 12 4.55l-.1-.11a5.25 5.25 0 0 0-7.42.1 5.54 5.54 0 0 0 0 7.61l6.94 7.15a1.5 1.5 0 0 0 2.16 0l6.94-7.15a5.54 5.54 0 0 0 0-7.61 5.25 5.25 0 0 0-7.42-.1Z"/>
+                </svg>
+            </span>
+            <span class="header-icon__text">Избранное</span>
+        </button>
+        <button class="header-icon">
+            <span class="header-icon__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 12a4 4 0 1 0-4-4 4.003 4.003 0 0 0 4 4Zm0 2c-4.01 0-7.5 2.01-7.5 4.5A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5C19.5 16.01 16.01 14 12 14Z"/>
+                </svg>
+            </span>
+            <span class="header-icon__text">Профиль</span>
+        </button>
+        <button class="header-icon header-icon--cart">
+            <span class="header-icon__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 4h10l1.5 4H21a1 1 0 0 1 0 2h-1l-1.2 7.2A2 2 0 0 1 16.82 19H7.18a2 2 0 0 1-1.98-1.8L4 10H3a1 1 0 0 1 0-2h2.5Zm1.1 4 1 9h7.8l1-9Z"/>
+                </svg>
+            </span>
+            <span class="header-icon__text">Корзина</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </div>
+</header>
+
+<main class="product-page">
+   <div class="product-page__back">
+    <button type="button" class="product-back" id="goBackBtn">← Назад</button>
+</div>
+
+
+    <section class="product-page__panel">
+        <div class="product-page__left">
+            <div class="product-page__title-block">
+                <h1 class="product-page__title" id="pdTitle">Название товара</h1>
+                <div class="product-page__brand" id="pdBrand"></div>
+                <div class="product-page__rating" id="pdRating"></div>
+            </div>
+
+            <div class="product-page__price-row">
+                <span class="product-page__price-main" id="pdPrice"></span>
+                <span class="product-page__price-old" id="pdOldPrice"></span>
+            </div>
+
+            <div class="product-page__buttons">
+                <button class="product-page__btn product-page__btn--primary" id="pdAddToCart">
+                    Добавить в корзину
+                </button>
+                <button class="product-page__btn product-page__btn--secondary" id="pdOrder">
+                    Заказать
+                </button>
+                <button class="product-page__btn product-page__btn--ghost" id="pdDeliveryBtn">
+                    Срок доставки: —
+                </button>
+            </div>
+
+            <div class="product-meta-grid">
+                <div class="product-meta__block">
+                    <div class="product-meta__label">Бренд</div>
+                    <div class="product-meta__value" id="pdBrandMeta"></div>
+                </div>
+                <div class="product-meta__block">
+                    <div class="product-meta__label">Категория</div>
+                    <div class="product-meta__value" id="pdCategoryMeta"></div>
+                </div>
+                <div class="product-meta__block">
+                    <div class="product-meta__label">ID товара</div>
+                    <div class="product-meta__value" id="pdIdMeta"></div>
+                </div>
+            </div>
+
+            <h2 class="product-page__subtitle">Характеристики</h2>
+            <ul class="product-page__specs" id="pdSpecs"></ul>
+        </div>
+
+        <div class="product-page__right">
+            <div class="product-page__image-wrap">
+                <img src="" alt="" id="pdImage">
+            </div>
+
+            <div class="product-page__text-block">
+                <h2 class="product-page__subtitle">Описание</h2>
+                <p class="product-page__description" id="pdDescription"></p>
+            </div>
+
+            <div class="product-page__text-block">
+                <h2 class="product-page__subtitle">Условия выкупа и доставки</h2>
+                <ul class="product-page__conditions" id="pdConditions"></ul>
+            </div>
+
+            <div class="product-page__delivery-info">
+                <div>Доставка по: <span id="pdRegionText">Кыргызстан</span></div>
+                <div>Адрес доставки: <span id="pdAddressText">укажите адрес вверху</span></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="product.js"></script>
+</body>
+</html>

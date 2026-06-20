@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админка — BAI Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f5f5f9;
+            padding: 16px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .top-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border-radius: 6px;
+            border: none;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #0047FF;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #e4e4e4;
+        }
+
+        .info {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            font-size: 12px;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f0f0ff;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 12px;
+            padding: 4px;
+        }
+
+        textarea {
+            min-height: 60px;
+        }
+
+        .id-cell {
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .action-cell {
+            text-align: center;
+        }
+
+        .action-cell button {
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+<h1>Админка — BAI Store</h1>
+
+<div class="top-bar">
+    <button class="btn-primary" id="addProductBtn">Добавить товар</button>
+    <button class="btn-primary" id="saveAllBtn">Сохранить изменения</button>
+    <button class="btn-secondary" id="resetDefaultsBtn">Сбросить на стандартный список</button>
+</div>
+
+<div class="info">
+    ⚙️ Все изменения сохраняются в <b>localStorage</b> этого браузера.<br>
+    Клиентский сайт <b>index.html</b> берёт список товаров отсюда.<br>
+    ⭐ Рейтинг и отзывы меняются только клиентами — здесь их редактировать нельзя.
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Бренд</th>
+        <th>Категория</th>
+        <th>Цена</th>
+        <th>Старая цена</th>
+        <th>Популярность</th>
+        <th>Картинка (URL)</th>
+        <th>Характеристики (каждая с новой строки)</th>
+        <th>Удалить</th>
+    </tr>
+    </thead>
+    <tbody id="productsTableBody">
+    <!-- Строки товаров рисует JS -->
+    </tbody>
+</table>
+
+<script src="admin.js"></script>
+</body>
+</html>

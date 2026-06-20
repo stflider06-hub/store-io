@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>BAI Store — Электроника</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <div class="header__left">
+        <div class="logo">
+            <span class="logo__main">BAI</span>
+            <span class="logo__sub">Store</span>
+        </div>
+        <div class="location">
+            <div class="location__row">
+                <span class="location__label">Ваша область:</span>
+                <select class="location__select" id="regionSelect">
+                    <option>Бишкек</option>
+                    <option>Ош</option>
+                    <option>Джалал-Абад</option>
+                    <option>Баткен</option>
+                    <option>Талас</option>
+                    <option>Нарын</option>
+                    <option>Иссык-Куль</option>
+                    <option>Чуй</option>
+                </select>
+            </div>
+            <input type="text"
+                   class="location__address"
+                   id="addressInput"
+                   placeholder="Укажите адрес доставки (улица, дом, квартира)">
+        </div>
+    </div>
+
+    <div class="header__center">
+        <form class="search" onsubmit="return false;">
+            <input type="text" class="search__input" placeholder="Искать наушники, электронику, аксессуары..." id="searchInput">
+            <button class="search__btn" id="searchBtn">Найти</button>
+        </form>
+    </div>
+
+    <div class="header__right">
+        <button class="header-icon">
+            <span class="header-icon__icon">
+                <!-- Сердце -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.1 4.44 12 4.55l-.1-.11a5.25 5.25 0 0 0-7.42.1 5.54 5.54 0 0 0 0 7.61l6.94 7.15a1.5 1.5 0 0 0 2.16 0l6.94-7.15a5.54 5.54 0 0 0 0-7.61 5.25 5.25 0 0 0-7.42-.1Z"/>
+                </svg>
+            </span>
+            <span class="header-icon__text">Избранное</span>
+        </button>
+        <button class="header-icon">
+            <span class="header-icon__icon">
+                <!-- Профиль -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 12a4 4 0 1 0-4-4 4.003 4.003 0 0 0 4 4Zm0 2c-4.01 0-7.5 2.01-7.5 4.5A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5C19.5 16.01 16.01 14 12 14Z"/>
+                </svg>
+            </span>
+            <span class="header-icon__text">Профиль</span>
+        </button>
+        <button class="header-icon header-icon--cart">
+            <span class="header-icon__icon">
+                <!-- Корзина -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 4h10l1.5 4H21a1 1 0 0 1 0 2h-1l-1.2 7.2A2 2 0 0 1 16.82 19H7.18a2 2 0 0 1-1.98-1.8L4 10H3a1 1 0 0 1 0-2h2.5Zm1.1 4 1 9h7.8l1-9Z"/>
+                </svg>
+            </span>
+            <span class="header-icon__text">Корзина</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </div>
+</header>
+
+<main class="layout">
+    <!-- Сайдбар категорий -->
+    <aside class="sidebar">
+        <h3 class="sidebar__title">Категории</h3>
+        <ul class="sidebar__list" id="categoryList">
+            <li class="sidebar__item sidebar__item--active" data-category="all">Все товары</li>
+            <li class="sidebar__item" data-category="earphones">Наушники</li>
+            <li class="sidebar__item" data-category="smartphones">Смартфоны</li>
+            <li class="sidebar__item" data-category="accessories">Аксессуары</li>
+            <li class="sidebar__item" data-category="audio">Аудио / колонки</li>
+        </ul>
+
+        <h3 class="sidebar__title">Фильтры</h3>
+        <div class="filter-block">
+            <label class="filter-block__label">Цена до (сом):</label>
+            <input type="number" id="maxPrice" class="filter-block__input" placeholder="Например, 10000">
+            <button class="filter-block__btn" id="applyFilter">Применить</button>
+            <button class="filter-block__btn filter-block__btn--clear" id="clearFilter">Сбросить</button>
+        </div>
+    </aside>
+
+    <!-- Основной контент -->
+    <section class="content">
+        <div class="content__top">
+            <h1 class="content__title">Электроника и наушники</h1>
+            <div class="sort">
+                <label class="sort__label" for="sortSelect">Сортировка:</label>
+                <select id="sortSelect" class="sort__select">
+                    <option value="popularity">По популярности</option>
+                    <option value="price-asc">Сначала дешевле</option>
+                    <option value="price-desc">Сначала дороже</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products" id="productList">
+            <!-- Карточки товаров будут добавлены скриптом -->
+        </div>
+    </section>
+</main>
+
+<!-- Модальное окно карточки товара -->
+<div class="modal" id="productModal">
+    <div class="modal__content">
+        <button class="modal__close" id="modalClose">×</button>
+        <div class="modal__body">
+            <div class="modal__image-wrap">
+                <img src="" alt="" class="modal__image" id="modalImage">
+            </div>
+            <div class="modal__info">
+                <h2 class="modal__title" id="modalTitle"></h2>
+                <div class="modal__brand" id="modalBrand"></div>
+                <div class="modal__price">
+                    <span class="modal__price-main" id="modalPrice"></span>
+                    <span class="modal__price-old" id="modalOldPrice"></span>
+                </div>
+                <div class="modal__rating" id="modalRating"></div>
+
+                <h3 class="modal__subtitle">Краткие характеристики</h3>
+                <ul class="modal__list" id="modalSpecs"></ul>
+
+                <button class="modal__btn" id="modalAddToCart">Добавить в корзину</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal__overlay" id="modalOverlay"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
